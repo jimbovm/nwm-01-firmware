@@ -4,7 +4,7 @@ The NWM-01 is an open hardware MIDI-to-CV converter for the Eurorack format, bas
 
 This repository is for the firmware only; for the hardware files see [https://github.com/jimbovm/nwm-01]().
 
-**⚠ Both firmware and hardware for the NWM-01 are works progress and still in development.**
+**⚠ Both firmware and hardware for the NWM-01 are works in progress and still in development.**
 
 ## Licence
 
