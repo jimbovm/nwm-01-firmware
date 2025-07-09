@@ -8,7 +8,7 @@ namespace nwm_01 {
 
 	void clockTick() {
 		digitalWrite(CLOCK_OUT, HIGH);
-		digitalWrite(CLOCK_OUT, LOW);
+		_clockOnEpoch = micros();
 	}
 
 	void start() {
