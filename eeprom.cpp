@@ -40,7 +40,8 @@ namespace nwm_01 {
 		initConfig.arpeggiatorPattern = arpeggiator::Pattern::OFF;
 		initConfig.gatePolarity = gate::Polarity::ACTIVE_HIGH;
 		initConfig.triggerPolarity = trigger::Polarity::ACTIVE_HIGH;
-		initConfig.triggerDuration = 0;
+		initConfig.triggerDuration = 60;
+		initConfig.clockDuration = 60;
 		initConfig.manufacturerID = DEFAULT_MANUFACTURER_ID;	
 		initConfig.lowNote = 21; // A1
 		initConfig.highNote = 81; // A6
@@ -60,6 +61,8 @@ namespace nwm_01 {
 		initConfig.internalClockTempo = 115; // 140 BPM
 		initConfig.inputClockPPQN = 24;
 		initConfig.outputClockPPQN = 24;
+
+		_config = initConfig;
 	}
 
 	void loadConfig(const int startOfFile) {
