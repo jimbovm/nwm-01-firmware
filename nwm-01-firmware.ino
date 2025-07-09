@@ -22,14 +22,7 @@ using namespace nwm_01;
 MIDI_CREATE_INSTANCE(HardwareSerial, Serial, MIDI);
 
 void setup() {
-	if (EEPROMIsBlank()) {
-		initConfig();
-	}
-	else {
-		int startOfFile = 0;
-		while (EEPROM.read(startOfFile) != 0xFF);
-		loadConfig(startOfFile + 1);
-	}
+	initConfig();
 	tune(_12_TET);
 	pinMode(NOTE_OUT, OUTPUT);
 	pinMode(VELOCITY_OUT, OUTPUT);
@@ -49,4 +42,10 @@ void setup() {
 
 void loop() {
 	MIDI.read();
+	if ((micros() - _clockOnEpoch) >= _config.clockDuration) {
+		digitalWrite(CLOCK_OUT, LOW);
+	}
+	if ((micros() - _triggerOnEpoch) >= _config.triggerDuration) {
+		digitalWrite(TRIGGER_OUT, _config.triggerPolarity == trigger::Polarity::ACTIVE_LOW ? HIGH : LOW);
+	}
 }
