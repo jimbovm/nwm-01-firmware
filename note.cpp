@@ -9,7 +9,7 @@ namespace nwm_01 {
 
 	// callback for handling NOTE ON messages
 	void noteOn(unsigned char channel, unsigned char pitch, unsigned char velocity) {
-		if ((pitch >= 0) && (pitch >= _config.lowNote) && (pitch <= _config.highNote)) {
+		if ((pitch >= _config.lowNote) && (pitch <= _config.highNote)) {
 			int cv = _tuneTable[(int) pitch - _config.lowNote];
 			gateOn();
 			analogWrite(NOTE_OUT, cv);
