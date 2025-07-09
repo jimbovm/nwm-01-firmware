@@ -5,5 +5,6 @@ namespace nwm_01 {
 
 	void gateOn();
 	void gateOff();
+	void triggerOn();
 }
 #endif

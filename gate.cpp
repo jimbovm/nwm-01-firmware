@@ -12,4 +12,8 @@ namespace nwm_01 {
 	void gateOff() {
 		digitalWrite(GATE_OUT, _config.gatePolarity == gate::ACTIVE_LOW ? HIGH : LOW);
 	}
+
+	void triggerOn() {
+		digitalWrite(TRIGGER_OUT, _config.triggerPolarity == trigger::ACTIVE_LOW ? HIGH : LOW);
+	}
 }
