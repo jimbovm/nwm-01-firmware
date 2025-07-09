@@ -19,6 +19,7 @@ namespace nwm_01 {
 		uint8_t gatePolarity;
 		uint8_t triggerPolarity;
 		uint8_t triggerDuration;
+		uint8_t clockDuration;
 		uint8_t manufacturerID;	
 		uint8_t lowNote;
 		uint8_t highNote;
@@ -36,5 +37,8 @@ namespace nwm_01 {
 	extern struct config _config;
 		
 	extern int _tuneTable[60];
+
+	extern unsigned long _clockOnEpoch;
+	extern unsigned long _triggerOnEpoch;
 }
 #endif

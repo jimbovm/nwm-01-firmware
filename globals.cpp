@@ -10,4 +10,7 @@ namespace nwm_01 {
 	struct config _config;
 
 	int _startOfNextFile;
+
+	unsigned long _triggerOnEpoch;
+	unsigned long _clockOnEpoch;
 }
