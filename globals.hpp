@@ -5,6 +5,8 @@
 #include "enums.hpp"
 #include "gate.hpp"
 
+#include <MIDI.h>
+
 namespace nwm_01 {
 
 	extern int _startOfNextFile;
@@ -40,5 +42,8 @@ namespace nwm_01 {
 
 	extern unsigned long _clockOnEpoch;
 	extern unsigned long _triggerOnEpoch;
+
+	extern midi::MidiInterface<HardwareSerial, midi::DefaultSettings> MIDI;
+
 }
 #endif

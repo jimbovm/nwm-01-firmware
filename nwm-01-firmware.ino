@@ -18,9 +18,6 @@
 
 using namespace nwm_01;
 
-// initialize MIDI
-MIDI_CREATE_INSTANCE(HardwareSerial, Serial, MIDI);
-
 void setup() {
 	initConfig();
 	tune(_12_TET);
@@ -30,6 +27,7 @@ void setup() {
 	pinMode(TRIGGER_OUT, OUTPUT);
 	pinMode(STARTSTOP_OUT, OUTPUT);
 	pinMode(CLOCK_OUT, OUTPUT);
+	MIDI.begin();
 	MIDI.turnThruOff();
 	MIDI.setHandleNoteOn(noteOn);
 	MIDI.setHandleNoteOff(noteOff);

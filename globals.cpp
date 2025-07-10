@@ -1,6 +1,8 @@
 #include "globals.hpp"
 #include "enums.hpp"
 
+#include <MIDI.h>
+
 namespace nwm_01 {
 
 	enum OperatingMode _operatingMode;
@@ -13,4 +15,7 @@ namespace nwm_01 {
 
 	unsigned long _triggerOnEpoch;
 	unsigned long _clockOnEpoch;
+
+	extern midi::MidiInterface<HardwareSerial, midi::DefaultSettings> MIDI = midi::MidiInterface<HardwareSerial>((HardwareSerial&) Serial);
+
 }
