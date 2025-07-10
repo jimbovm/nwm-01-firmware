@@ -38,6 +38,7 @@ void setup() {
 	MIDI.setHandleStop(stop);
 	MIDI.begin(_config.receiveChannel);
 	gateOff();
+	digitalWrite(TRIGGER_OUT, _config.triggerPolarity == trigger::Polarity::ACTIVE_LOW ? HIGH : LOW);
 }
 
 void loop() {
@@ -46,6 +47,6 @@ void loop() {
 		digitalWrite(CLOCK_OUT, LOW);
 	}
 	if ((micros() - _triggerOnEpoch) >= _config.triggerDuration) {
-		digitalWrite(TRIGGER_OUT, _config.triggerPolarity == trigger::Polarity::ACTIVE_LOW ? HIGH : LOW);
+		triggerOff();	
 	}
 }
