@@ -42,7 +42,7 @@ namespace nwm_01 {
 		initConfig.triggerPolarity = trigger::Polarity::ACTIVE_HIGH;
 		initConfig.triggerDuration = 200;
 		initConfig.clockDuration = 60;
-		initConfig.manufacturerID = DEFAULT_MANUFACTURER_ID;	
+		initConfig.manufacturerID = DEFAULT_MANUFACTURER_ID;
 		initConfig.lowNote = 21; // A1
 		initConfig.highNote = 81; // A6
 		initConfig.receiveChannel = 0; // omni
