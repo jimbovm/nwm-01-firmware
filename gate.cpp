@@ -17,4 +17,8 @@ namespace nwm_01 {
 		digitalWrite(TRIGGER_OUT, _config.triggerPolarity == trigger::ACTIVE_LOW ? LOW : HIGH);
 		_triggerOnEpoch = micros();
 	}
+
+	void triggerOff() {
+		digitalWrite(TRIGGER_OUT, _config.triggerPolarity == trigger::ACTIVE_LOW ? HIGH : LOW);
+	}
 }

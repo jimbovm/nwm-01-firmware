@@ -12,6 +12,7 @@ namespace nwm_01 {
 		if ((pitch >= _config.lowNote) && (pitch <= _config.highNote)) {
 			int cv = _tuneTable[(int) pitch - _config.lowNote];
 			gateOn();
+			triggerOn();
 			analogWrite(NOTE_OUT, cv);
 			analogWrite(VELOCITY_OUT, velocity << 1);
 		}
@@ -19,6 +20,8 @@ namespace nwm_01 {
 
 	// callback for handling NOTE OFF messages
 	void noteOff(unsigned char channel, unsigned char note, unsigned char velocity) {
+		analogWrite(VELOCITY_OUT, 0);
+		triggerOff();
 		gateOff();
 	}
 }
