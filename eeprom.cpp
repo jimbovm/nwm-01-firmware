@@ -40,7 +40,7 @@ namespace nwm_01 {
 		initConfig.arpeggiatorPattern = arpeggiator::Pattern::OFF;
 		initConfig.gatePolarity = gate::Polarity::ACTIVE_HIGH;
 		initConfig.triggerPolarity = trigger::Polarity::ACTIVE_HIGH;
-		initConfig.triggerDuration = 60;
+		initConfig.triggerDuration = 200;
 		initConfig.clockDuration = 60;
 		initConfig.manufacturerID = DEFAULT_MANUFACTURER_ID;	
 		initConfig.lowNote = 21; // A1
