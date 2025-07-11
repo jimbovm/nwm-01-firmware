@@ -34,7 +34,14 @@ namespace nwm_01 {
 			LINEAR = 1,
 			STEEP = 2,
 			EXPONENTIAL = 3,
-			REVERSE_EXPONENTIAL = 4
+			LOGARITHMIC = 4
+		};
+	}
+	
+	namespace clock {
+		enum Source: uint8_t {
+			MIDI = 0,
+			SELF = 1
 		};
 	}
 
