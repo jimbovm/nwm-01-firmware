@@ -42,7 +42,9 @@ namespace nwm_01 {
 		INIT = 0,
 		NORMAL = 1,
 		ARPEGGIATOR = 2,
-		SEQUENCER = 3
+		SEQUENCER = 3,
+		BULK_DUMP = 4,
+		BULK_RECEIVE = 5
 	};
 }
 #endif
