@@ -2,14 +2,13 @@
 #include "clock.hpp"
 #include "constants.hpp"
 #include "eeprom.hpp"
+#include "gate.hpp"
 #include "globals.hpp"
 #include "note.hpp"
 #include "tuning.hpp"
-#include "gate.hpp"
 #include "utils.hpp"
 
 #include <Arduino.h>
-#include <EEPROM.h>
 #include <MIDI.h>
 #include <midi_Namespace.h>
 #include <midi_Settings.h>
