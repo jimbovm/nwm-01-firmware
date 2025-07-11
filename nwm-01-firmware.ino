@@ -1,7 +1,7 @@
 #include "cc.hpp"
 #include "clock.hpp"
 #include "constants.hpp"
-#include "eeprom.hpp"
+#include "config.hpp"
 #include "gate.hpp"
 #include "globals.hpp"
 #include "note.hpp"

@@ -1,5 +1,5 @@
-#ifndef eeprom_hpp
-#define eeprom_hpp
+#ifndef config_hpp
+#define config_hpp
 #include "enums.hpp"
 
 namespace nwm_01 {

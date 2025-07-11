@@ -3,7 +3,7 @@
 #include "constants.hpp"
 #include "globals.hpp"
 #include "enums.hpp"
-#include "eeprom.hpp"
+#include "config.hpp"
 
 namespace nwm_01 {
 
