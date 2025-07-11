@@ -1,3 +1,4 @@
+#include "cc.hpp"
 #include "clock.hpp"
 #include "constants.hpp"
 #include "eeprom.hpp"
@@ -5,6 +6,7 @@
 #include "note.hpp"
 #include "tuning.hpp"
 #include "gate.hpp"
+#include "utils.hpp"
 
 #include <Arduino.h>
 #include <EEPROM.h>
@@ -27,13 +29,15 @@ void setup() {
 	pinMode(TRIGGER_OUT, OUTPUT);
 	pinMode(STARTSTOP_OUT, OUTPUT);
 	pinMode(CLOCK_OUT, OUTPUT);
-	MIDI.begin();
 	MIDI.turnThruOff();
 	MIDI.setHandleNoteOn(noteOn);
 	MIDI.setHandleNoteOff(noteOff);
 	MIDI.setHandleClock(clockTick);
 	MIDI.setHandleStart(start);
 	MIDI.setHandleStop(stop);
+	if (_config.velocityCCReassign != 0) {
+		setVelocityCCReassign(_config.velocityCCReassign);
+	}
 	MIDI.begin(_config.receiveChannel);
 	gateOff();
 	digitalWrite(TRIGGER_OUT, _config.triggerPolarity == trigger::Polarity::ACTIVE_LOW ? HIGH : LOW);
@@ -41,10 +45,10 @@ void setup() {
 
 void loop() {
 	MIDI.read();
-	if ((micros() - _clockOnEpoch) >= _config.clockDuration) {
-		digitalWrite(CLOCK_OUT, LOW);
+	if (expired(_clockOnEpoch, _config.clockDuration)) {
+		clockTock();
 	}
-	if ((micros() - _triggerOnEpoch) >= _config.triggerDuration) {
+	if (expired(_triggerOnEpoch, _config.triggerDuration)) {
 		triggerOff();	
 	}
 }
