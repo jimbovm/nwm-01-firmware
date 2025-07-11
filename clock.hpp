@@ -4,6 +4,7 @@
 namespace nwm_01 {
 
 	void clockTick();
+	void clockTock();
 	void start();
 	void stop();
 }

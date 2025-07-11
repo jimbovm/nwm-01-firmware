@@ -11,6 +11,10 @@ namespace nwm_01 {
 		_clockOnEpoch = micros();
 	}
 
+	void clockTock() {
+		digitalWrite(CLOCK_OUT, LOW);
+	}
+
 	void start() {
 		digitalWrite(STARTSTOP_OUT, HIGH);
 	}
