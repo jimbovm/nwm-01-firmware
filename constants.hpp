@@ -4,9 +4,6 @@
 
 namespace nwm_01 {
 
-	// The voltage difference between two semitones when 1V = one octave.
-	const double ONE_SEMITONE = 0.083333;
-
 	// The pin on which to output CV via PWM. By default this is pin 5, which has high resolution PWM.
 	const int NOTE_OUT = 5;
 
@@ -29,7 +26,7 @@ namespace nwm_01 {
 	const int FILE_LENGTH = 256;
 
 	// Number of tuning entries in a tuning.
-	const int TUNING_LENGTH = 60;
+	const int TUNING_LENGTH = 56;
 
 	// Maximum number of notes in a sequence.
 	const int SEQUENCE_LENGTH = 16;
@@ -52,64 +49,61 @@ namespace nwm_01 {
 	// Default 12-tone equal temperament tuning.
 	const uint8_t _12_TET[TUNING_LENGTH] = {
 		0,
-		4,
-		8,
-		12,
-		16,
-		21,
-		25,
-		29,
-		33,
-		38,
+		5,
+		9,
+		14,
+		19,
+		23,
+		28,
+		32,
+		37,
 		42,
 		46,
-		50,
-		55,
-		59,
-		63,
-		67,
-		72,
-		76,
-		80,
-		84,
-		89,
+		51,
+		56,
+		60,
+		65,
+		70,
+		74,
+		79,
+		83,
+		88,
 		93,
 		97,
-		101,
-		106,
-		110,
-		114,
-		118,
-		123,
-		127,
-		131,
-		135,
-		140,
+		102,
+		107,
+		111,
+		116,
+		121,
+		125,
+		130,
+		134,
+		139,
 		144,
 		148,
-		152,
-		157,
-		161,
-		165,
-		169,
-		174,
-		178,
-		182,
-		186,
-		191,
+		153,
+		158,
+		162,
+		167,
+		172,
+		176,
+		181,
+		185,
+		190,
 		195,
 		199,
-		203,
-		208,
-		212,
-		216,
-		220,
-		225,
-		229,
-		233,
-		237,
-		242,
+		204,
+		209,
+		213,
+		218,
+		223,
+		227,
+		232,
+		236,
+		241,
 		246,
-		250};
+		250,
+		255,
+	};
 }
 #endif

@@ -1,10 +1,10 @@
 #include <Arduino.h>
 #include "constants.hpp"
 #include "note.hpp"
-#include "cv.hpp"
 #include "gate.hpp"
 #include "globals.hpp"
 #include "utils.hpp"
+#include "velocity.hpp"
 
 namespace nwm_01 {
 
@@ -20,7 +20,7 @@ namespace nwm_01 {
 
 				bool velocityIsReassigned = (_config.velocityCCReassign != 0);
 				if (velocityIsReassigned == false) {
-					analogWrite(VELOCITY_OUT, velocity << 1);
+					analogWrite(VELOCITY_OUT, calculateVelocityPWM(velocity));
 				}
 			}
 		}
@@ -33,7 +33,7 @@ namespace nwm_01 {
 
 			bool velocityIsReassigned = (_config.velocityCCReassign != 0);
 			if (velocityIsReassigned == false) {
-				analogWrite(VELOCITY_OUT, velocity << 1);
+				analogWrite(VELOCITY_OUT, calculateVelocityPWM(velocity));
 			}
 			triggerOff();
 			gateOff();
