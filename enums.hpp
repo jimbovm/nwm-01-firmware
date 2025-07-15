@@ -49,7 +49,6 @@ namespace nwm_01 {
 
 	namespace sysex {
 		enum Offset: uint8_t {
-			REVISION,
 			MANUFACTURER_ID,
 			N,
 			W,
