@@ -16,6 +16,9 @@ namespace nwm_01 {
 	unsigned long _triggerOnEpoch;
 	unsigned long _clockOnEpoch;
 
+	uint8_t _numberOfKeysDown;
+        unsigned long long _keysDown;
+
 	extern midi::MidiInterface<HardwareSerial, midi::DefaultSettings> MIDI = midi::MidiInterface<HardwareSerial>((HardwareSerial&) Serial);
 
 }

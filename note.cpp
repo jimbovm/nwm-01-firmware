@@ -13,7 +13,13 @@ namespace nwm_01 {
 
 		if (forChannel(channel)) {
 			if ((note >= _config.lowNote) && (note <= _config.highNote)) {
-				int cv = _tuneTable[(int) note - _config.lowNote];
+
+				const uint8_t canonicalNote = note - _config.lowNote;
+				_keysDown |= (1 << canonicalNote);
+				_numberOfKeysDown++;
+				
+				const uint8_t cv = _tuneTable[canonicalNote];
+
 				gateOn();
 				triggerOn();
 				analogWrite(NOTE_OUT, cv);
@@ -30,6 +36,10 @@ namespace nwm_01 {
 	void noteOff(uint8_t channel, uint8_t note, uint8_t velocity) {
 
 		if (forChannel(channel)) {
+
+			const uint8_t canonicalNote = note - _config.lowNote;
+			_keysDown ^= (1 << canonicalNote);
+			_numberOfKeysDown--;
 
 			bool velocityIsReassigned = (_config.velocityCCReassign != 0);
 			if (velocityIsReassigned == false) {
