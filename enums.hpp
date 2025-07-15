@@ -24,7 +24,8 @@ namespace nwm_01 {
 			DOWN = 2,
 			UP_DOWN = 3,
 			DOWN_UP = 4,
-			RANDOM = 5
+			RANDOM = 5,
+			MAX = RANDOM
 		};
 	}
 
@@ -34,7 +35,8 @@ namespace nwm_01 {
 			LINEAR = 1,
 			STEEP = 2,
 			EXPONENTIAL = 3,
-			LOGARITHMIC = 4
+			LOGARITHMIC = 4,
+			MAX = LOGARITHMIC
 		};
 	}
 	
@@ -45,12 +47,49 @@ namespace nwm_01 {
 		};
 	}
 
+	namespace sysex {
+		enum Offset: uint8_t {
+			REVISION,
+			MANUFACTURER_ID,
+			N,
+			W,
+			M,
+			DEVICE_MODEL,
+			DEVICE_VARIANT,
+			OPCODE,
+			PARAMETER_NUMBER,
+			PARAMETER_VALUE
+		};
+
+		enum Opcode: uint8_t {
+			SET_INDIVIDUAL_PARAMETER,
+			SET_TUNING,
+		};
+	}
+
+	namespace settings {
+		enum Parameter: uint8_t {
+			VELOCITY_CURVE,
+			GATE_POLARITY,
+			TRIGGER_POLARITY,
+			TRIGGER_DURATION,
+			CLOCK_DURATION,
+			LOW_NOTE,
+			RECEIVE_CHANNEL,
+			MANUFACTURER_ID,
+			FORCE_INTERNAL_CLOCK,
+			INTERNAL_CLOCK_TEMPO,
+			INPUT_CLOCK_PPQN,
+			OUTPUT_CLOCK_PPQN
+		};
+	}
+
 	enum OperatingMode: uint8_t {
 		INIT = 0,
 		NORMAL = 1,
 		ARPEGGIATOR = 2,
-		SEQUENCER = 3,
-		BULK_DUMP = 4,
+		SEQUENCER_WRITE = 3,
+		SEQUENCER_PLAY = 4,
 		BULK_RECEIVE = 5
 	};
 }
