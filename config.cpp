@@ -44,19 +44,7 @@ namespace nwm_01 {
 		initConfig.clockDuration = 60;
 		initConfig.manufacturerID = DEFAULT_MANUFACTURER_ID;
 		initConfig.lowNote = 21; // A1
-		initConfig.highNote = 81; // A6
 		initConfig.receiveChannel = 0; // omni
-		
-		memcpy(initConfig.tuningTable, _12_TET, TUNING_LENGTH);
-		memcpy(initConfig.tuningTable + TUNING_LENGTH, _12_TET, TUNING_LENGTH);
-
-		memcpy(initConfig.sequenceTable, DEFAULT_SEQUENCE, SEQUENCE_LENGTH);
-		memcpy(initConfig.sequenceTable, DEFAULT_SEQUENCE + SEQUENCE_OFFSET[1], SEQUENCE_LENGTH);
-		memcpy(initConfig.sequenceTable, DEFAULT_SEQUENCE + SEQUENCE_OFFSET[2], SEQUENCE_LENGTH);
-		memcpy(initConfig.sequenceTable, DEFAULT_SEQUENCE + SEQUENCE_OFFSET[3], SEQUENCE_LENGTH);
-		memcpy(initConfig.sequenceTable, DEFAULT_SEQUENCE + SEQUENCE_OFFSET[4], SEQUENCE_LENGTH);
-		memcpy(initConfig.sequenceTable, DEFAULT_SEQUENCE + SEQUENCE_OFFSET[5], SEQUENCE_LENGTH);
-
 		initConfig.forceInternalClock = false;
 		initConfig.internalClockTempo = 115; // 140 BPM
 		initConfig.inputClockPPQN = 24;

@@ -12,7 +12,7 @@ namespace nwm_01 {
 	void noteOn(uint8_t channel, uint8_t note, uint8_t velocity) {
 
 		if (forChannel(channel)) {
-			if ((note >= _config.lowNote) && (note <= _config.highNote)) {
+			if ((note >= _config.lowNote) && (note <= (_config.lowNote + TUNING_LENGTH))) {
 
 				const uint8_t canonicalNote = note - _config.lowNote;
 				_keysDown |= (1 << canonicalNote);
