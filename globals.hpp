@@ -35,7 +35,7 @@ namespace nwm_01 {
 
 	extern struct config _config;
 		
-	extern int _tuneTable[60];
+	extern int _tuneTable[TUNING_LENGTH];
 
 	extern unsigned long _clockOnEpoch;
 	extern unsigned long _triggerOnEpoch;

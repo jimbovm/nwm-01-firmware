@@ -7,7 +7,7 @@ namespace nwm_01 {
 
 	enum OperatingMode _operatingMode;
 	
-	int _tuneTable[60];
+	int _tuneTable[TUNING_LENGTH];
 	
 	struct config _config;
 

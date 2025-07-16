@@ -37,7 +37,7 @@
 #define DEFAULT_MANUFACTURER_ID 0x64
 
 // Default 12-tone equal temperament tuning.
-const uint8_t _12_TET[] = {
+const uint8_t _12_TET[TUNING_LENGTH] = {
 	0,
 	5,
 	9,
