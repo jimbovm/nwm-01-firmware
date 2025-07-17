@@ -8,6 +8,16 @@
 
 namespace nwm_01 {
 
+	inline void outputVelocity(uint8_t velocity) {
+		bool velocityIsReassigned = (_config.velocityCCReassign != 0);
+		if (
+			(_config.velocityCurve != velocity::Curve::OFF) &&
+			(velocityIsReassigned == false)
+		) {
+			analogWrite(VELOCITY_OUT, calculateVelocityPWM(velocity));
+		}
+	}
+
 	// callback for handling NOTE ON messages
 	void noteOn(uint8_t channel, uint8_t note, uint8_t velocity) {
 
@@ -23,11 +33,7 @@ namespace nwm_01 {
 				gateOn();
 				triggerOn();
 				analogWrite(NOTE_OUT, cv);
-
-				bool velocityIsReassigned = (_config.velocityCCReassign != 0);
-				if (velocityIsReassigned == false) {
-					analogWrite(VELOCITY_OUT, calculateVelocityPWM(velocity));
-				}
+				outputVelocity(velocity);
 			}
 		}
 	}
@@ -41,10 +47,7 @@ namespace nwm_01 {
 			_keysDown ^= (1 << canonicalNote);
 			_numberOfKeysDown--;
 
-			bool velocityIsReassigned = (_config.velocityCCReassign != 0);
-			if (velocityIsReassigned == false) {
-				analogWrite(VELOCITY_OUT, calculateVelocityPWM(velocity));
-			}
+			outputVelocity(velocity);
 			triggerOff();
 			gateOff();
 		}
