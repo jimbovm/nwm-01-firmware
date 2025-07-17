@@ -15,8 +15,6 @@
 #include <midi_Defs.h>
 #include <midi_Message.h>
 
-#define NWM_01_PRODUCTION
-
 using namespace nwm_01;
 
 void setup() {
