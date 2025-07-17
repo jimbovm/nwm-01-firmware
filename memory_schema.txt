@@ -1,30 +1,21 @@
-0x00 Revision
-0x01 Velocity curve (0 = off, 1 = linear, 2 = steep, 3 = -ve exponential, 4 = +ve exponential)
-0x02 Velocity CC reassign (0 = off (velocity), anything else = that CC)
-0x03 Arpeggiator (0 = off, 1 = up, 2 = down, 3 = up/down, 4 = down/up, 5 = random)
-0x04 Gate polarity (<63 = open HIGH, closed LOW, <=64 = open LOW, closed HIGH)
-0x05 Trigger polarity (<63 = on HIGH, off LOW, <=64 = on LOW, off HIGH)
-0x06 Trigger duration (0 = default, 1-20 = increments of 50us up to 1000us (1ms))
-0x07 Lowest note to which to respond (MIDI note number 0-127)
-0x08 Highest note to which to respond (MIDI note number 0-127)
-0x09 MIDI channel (0 for omni, 1-16 for that channel number)
-0x10 Manufacturer ID (default 0x64)
+0x00		Revision
+0x01		Velocity curve (0 = off, 1 = linear, 2 = steep, 3 = logarithmic, 4 = exponential)
+0x02		Velocity CC reassign (0 = off (velocity), anything else = that CC)
+0x03		Arpeggiator (MSN 0 = hold off, 1 = hold on, LSN 0 = up, 1 = down, 2 = up/down, 3 = down/up, 4 = random) 
+0x04		Gate polarity (0 = open HIGH, closed LOW, 1 = open LOW, closed HIGH)
+0x05		Trigger polarity (0 = on HIGH, off LOW, 1 = on LOW, off HIGH)
+0x06		Trigger duration (0 = default, 1-20 = increments of 50us up to 1000us (1ms))
+0x07		Lowest note to which to respond (MIDI note number 0-127)
+0x08		Operating mode (1 = normal, 2 = arpeggiator, 3 = sequencer)
+0x09		MIDI channel (0 for omni, 1-16 for that channel number)
+0x0A		Manufacturer ID (default 0x64)
+0x0B		Internal clock tempo (0-255, add 45 for BPM value)
+0x0C		Force internal clock (0 = off, 1 = on)
+0x0D		Input clock PPQN (0-255 pulses per quarter note)
+0x0E		Output clock PPQN (0-255 pulses per quarter note)
+0x0F 		Tuning (0 = 12-TET, 1 = user tuning 1, 2 = user tuning 2)
 
-0x1A-0x56 User Tuning 1 \__ (81 bytes representing PWM signal duty)
-0x57-0x93 User Tuning 2 /
+0x10-0x48	User Tuning 1 \__ (56 bytes representing PWM signal duty)
+0x49-0x81	User Tuning 2 /
 
-0x94-A4 \
-0xA5-B5  \
-0xB6-C6   \___ Sequences of up to 16 MIDI notes; 127 means a rest, 126 means a tie, 0 means end of sequence
-0xC7-D7   /
-0xD8-E8  /
-0xE9-F9 /
-
-0xFA Internal clock tempo (0-255, add 45 for BPM value)
-0xFB Force internal clock (<63 = off, <=64 on)
-0xFC Input clock PPQN (0-255 pulses per quarter note)
-0xFD Output clock PPQN (0-255 pulses per quarter note)
-
-0xFE Reserved
-
-0xFF End of file (always all ones for active file, anything else for stale file)
+0x7E-0xFF       Reserved
