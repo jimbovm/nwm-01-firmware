@@ -49,15 +49,16 @@ namespace nwm_01 {
 
 	namespace sysex {
 		enum Offset: uint8_t {
-			MANUFACTURER_ID,
-			N,
-			W,
-			M,
-			DEVICE_MODEL,
-			DEVICE_VARIANT,
-			OPCODE,
-			PARAMETER_NUMBER,
-			PARAMETER_VALUE
+			BEGIN_SYSEX = 0,
+			MANUFACTURER_ID = 1,
+			N = 2,
+			W = 3,
+			M = 4,
+			DEVICE_MODEL = 5,
+			DEVICE_VARIANT = 6,
+			OPCODE = 7,
+			PARAMETER_NUMBER = 8,
+			PARAMETER_VALUE = 9
 		};
 
 		enum Opcode: uint8_t {
