@@ -4,7 +4,9 @@
 #include "config.hpp"
 #include "gate.hpp"
 #include "globals.hpp"
+#include "enums.hpp"
 #include "note.hpp"
+#include "sysex.hpp"
 #include "tuning.hpp"
 #include "utils.hpp"
 
@@ -32,6 +34,7 @@ void setup() {
 	MIDI.setHandleClock(clockTick);
 	MIDI.setHandleStart(start);
 	MIDI.setHandleStop(stop);
+	MIDI.setHandleSystemExclusive(doSysex);
 	if (_config.velocityCCReassign != 0) {
 		setVelocityCCReassign(_config.velocityCCReassign);
 	}

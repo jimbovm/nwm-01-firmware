@@ -16,30 +16,33 @@ namespace nwm_01 {
 		if (
 			validManufacturerId(array, size) &&
 			validDeviceId(array, size)
-		)
+		) {
 
-		// If we're here, we may have a message addressed to the module
-		if (size < sysex::Offset::OPCODE) return;
-		sysex::Opcode opcode = (sysex::Opcode) array[sysex::Offset::OPCODE];
+			// If we're here, we may have a message addressed to the module
+			if (size < (sysex::Offset::OPCODE + 1)) return;
+			sysex::Opcode opcode = (sysex::Opcode) array[sysex::Offset::OPCODE];
 
-		switch (opcode) {
-			case sysex::Opcode::SET_INDIVIDUAL_PARAMETER:
-				if (size < sysex::Offset::PARAMETER_VALUE) return;
-				const settings::Parameter parameter = (settings::Parameter) array[sysex::Offset::PARAMETER_NUMBER];
-				const uint8_t value = array[sysex::Offset::PARAMETER_VALUE];
-				setIndividualParameter(parameter, value);
-				break;
-			case sysex::Opcode::SET_TUNING:		
-				if (size < (TUNING_LENGTH + 1)) return;
-				setTuning(array, size);
-			default:
-				return;
+			switch (opcode) {
+				case sysex::Opcode::SET_INDIVIDUAL_PARAMETER:
+					if (size < (sysex::Offset::PARAMETER_VALUE_LOW + 1)) return;
+					const uint8_t parameter = array[sysex::Offset::PARAMETER_NUMBER];
+					const uint8_t high_value = array[sysex::Offset::PARAMETER_VALUE_HIGH];
+					const uint8_t low_value = array[sysex::Offset::PARAMETER_VALUE_LOW];
+					const uint8_t value = low_value | (high_value << 7);
+					setIndividualParameter(parameter, value);
+					break;
+				case sysex::Opcode::SET_TUNING:		
+					if (size < (TUNING_LENGTH + 1)) return;
+					setTuning(array, size);
+				default:
+					return;
+			}
 		}
 	}
 
 	bool validManufacturerId(uint8_t array[], unsigned size) {
 
-		if (size < sysex::Offset::M) return false;
+		if (size < (sysex::Offset::M + 1)) return false;
 
 		return ((array[sysex::Offset::MANUFACTURER_ID] == _config.manufacturerID) &&
 			(array[sysex::Offset::N] == 'N') &&
@@ -49,19 +52,15 @@ namespace nwm_01 {
 
 	bool validDeviceId(uint8_t array[], unsigned size) {
 
-		if (size < sysex::Offset::DEVICE_VARIANT) return false;
+		if (size < (sysex::Offset::DEVICE_VARIANT + 1)) return false;
 
-		#ifdef NWM_01_DEVICE_MODEL && NWM_01_DEVICE_VARIANT
-		return (
-			(array[sysex::Offset::DEVICE_MODEL] == DEVICE_MODEL) &&
-			(array[sysex::Offset::DEVICE_VARIANT] == DEVICE_VARIANT));
-		#endif
+		return true;
 	}
 
-	void setIndividualParameter(settings::Parameter parameter, uint8_t value) {
+	void setIndividualParameter(uint8_t parameter, uint8_t value) {
 		switch (parameter) {
 			case settings::Parameter::VELOCITY_CURVE:
-				_config.velocityCurve = (velocity::Curve) (value < velocity::Curve::MAX ? value : 0);
+				_config.velocityCurve = (velocity::Curve) value;
 				break;
 			case settings::Parameter::GATE_POLARITY:
 				_config.gatePolarity = (gate::Polarity) ((value < 2) ? value : 0);
@@ -73,7 +72,7 @@ namespace nwm_01 {
 				_config.triggerDuration = value;
 				break;
 			case settings::Parameter::CLOCK_DURATION:
-				_config.triggerDuration = value;
+				_config.clockDuration = value;
 				break;
 			case settings::Parameter::MANUFACTURER_ID:
 				_config.manufacturerID = value;
@@ -85,16 +84,16 @@ namespace nwm_01 {
 				_config.receiveChannel = (value > 16) ? 0 : value;
 				break;
 			case settings::Parameter::FORCE_INTERNAL_CLOCK:
-				_config.lowNote = (value < 2) ? value : 0;
+				_config.forceInternalClock = (value < 2) ? value : 0;
 				break;
 			case settings::Parameter::INTERNAL_CLOCK_TEMPO:
-				_config.lowNote = value;
+				_config.internalClockTempo = value;
 				break;
 			case settings::Parameter::INPUT_CLOCK_PPQN:
-				_config.lowNote = value;
+				_config.inputClockPPQN = value;
 				break;
 			case settings::Parameter::OUTPUT_CLOCK_PPQN:
-				_config.lowNote = value;
+				_config.outputClockPPQN = value;
 				break;
 			default:
 				return;
