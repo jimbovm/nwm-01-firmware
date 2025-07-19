@@ -10,11 +10,13 @@ namespace nwm_01 {
 
 	inline void outputVelocity(uint8_t velocity) {
 		bool velocityIsReassigned = (_config.velocityCCReassign != 0);
-		if (
-			(_config.velocityCurve != velocity::Curve::OFF) &&
-			(velocityIsReassigned == false)
-		) {
+		if (velocityIsReassigned) return;
+
+		if (_config.velocityCurve != velocity::Curve::OFF) {
 			analogWrite(VELOCITY_OUT, calculateVelocityPWM(velocity));
+		}
+		else {
+			analogWrite(VELOCITY_OUT, 128);
 		}
 	}
 
