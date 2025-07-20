@@ -60,7 +60,7 @@ namespace nwm_01 {
 	void setIndividualParameter(uint8_t parameter, uint8_t value) {
 		switch (parameter) {
 			case settings::Parameter::VELOCITY_CURVE:
-				_config.velocityCurve = (velocity::Curve) ((value < velocity::Curve::MAX) ? value : velocity::Curve::OFF);
+				_config.velocityCurve = (velocity::Curve) ((value <= velocity::Curve::MAX) ? value : velocity::Curve::OFF);
 				break;
 			case settings::Parameter::VELOCITY_CC_REASSIGN:
 				setVelocityCCReassign((value <= 127) ? value : 1);
